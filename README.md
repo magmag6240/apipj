@@ -105,36 +105,36 @@ MySQLにて以下のコマンドでsnsapipj_testというデータベースを�
 テストDBをテストの実行で使用するには、phpunit.xmlの編集が必要です。
 phpunit.xmlを以下のように編集してください。
 
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>  
 <phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 xsi:noNamespaceSchemaLocation="./vendor/phpunit/phpunit/phpunit.xsd"
 bootstrap="vendor/autoload.php"
 colors="true"
->
-  <testsuites>
-    <testsuite name="Unit">
-      <directory suffix="Test.php">./tests/Unit</directory>
-    </testsuite>
-    <testsuite name="Feature">
-      <directory suffix="Test.php">./tests/Feature</directory>
-    </testsuite>
-  </testsuites>
-  <coverage processUncoveredFiles="true">
-    <include>
-      <directory suffix=".php">./app</directory>
-    </include>
-  </coverage>
-  <php>
-    <server name="APP_ENV" value="testing"/>
-    <server name="BCRYPT_ROUNDS" value="4"/>
-    <server name="CACHE_DRIVER" value="array"/>
-    <server name="DB_CONNECTION" value="mysql_test"/>
-    <server name="MAIL_MAILER" value="array"/>
-    <server name="QUEUE_CONNECTION" value="sync"/>
-    <server name="SESSION_DRIVER" value="array"/>
-    <server name="TELESCOPE_ENABLED" value="false"/>
-  </php>
-</phpunit>
+>  
+  <testsuites>  
+    <testsuite name="Unit">  
+      <directory suffix="Test.php">./tests/Unit</directory>  
+    </testsuite>  
+    <testsuite name="Feature">  
+      <directory suffix="Test.php">./tests/Feature</directory>  
+    </testsuite>  
+  </testsuites>  
+  <coverage processUncoveredFiles="true">  
+    <include>  
+      <directory suffix=".php">./app</directory>  
+    </include>  
+  </coverage>  
+  <php>  
+    <server name="APP_ENV" value="testing"/>  
+    <server name="BCRYPT_ROUNDS" value="4"/>  
+    <server name="CACHE_DRIVER" value="array"/>  
+    <server name="DB_CONNECTION" value="mysql_test"/>  
+    <server name="MAIL_MAILER" value="array"/>  
+    <server name="QUEUE_CONNECTION" value="sync"/>  
+    <server name="SESSION_DRIVER" value="array"/>  
+    <server name="TELESCOPE_ENABLED" value="false"/>  
+  </php>  
+</phpunit>  
 
 ## .envファイルを作る
 git cloneしてきたプロジェクトに入っている`.env.example`ファイルを基に以下のコマンド実行で`.env`ファイルを作成します。
