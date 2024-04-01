@@ -1,66 +1,181 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Twitter風SNSアプリ
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+【概要】Twitter風SNSアプリ
 
-## About Laravel
+【イメージ】
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+<img width="743" alt="home" src="sns_home.png">
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## 作成した目的
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+【背景と目的】 何気ないことをつぶやくことができるTwitter風SNSアプリを作成する。
 
-## Learning Laravel
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## 機能一覧
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+| 項目 |
+| ---- |
+| ユーザー認証（Firebase Authentication） |
+| 投稿の一覧表示　追加処理　削除処理 |
+| 投稿した名前と投稿内容が表示される |
+| 投稿の追加 |
+| バツマークを押すと投稿が削除される |
+| いいね機能 |
+| ハートマークを押すと良いね数が増えたり減ったりする |
+| コメント機能 |
+| 矢印マークを押すとコメント画面に遷移する |
+| コメントした名前と投稿内容が表示される |
+| コメントの追加 |
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## 使用技術
 
-## Laravel Sponsors
+* PHP v8.1
+* Laravel v10.48.4
+* mySQL 8.3.0
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
 
-### Premium Partners
+## テーブル設計
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+<img width="743" alt="" src="sns_table.png">
 
-## Contributing
+## ER図
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+<img width="743" alt="" src="user_post.png">
+<img width="743" alt="" src="user_like.png">
+<img width="743" alt="" src="user_comment.png">
+<img width="743" alt="" src="post_like.png">
+<img width="743" alt="" src="post_comment.png">
 
-## Code of Conduct
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+# 環境構築
 
-## Security Vulnerabilities
+## git clone
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+先にコピーを保存したいディレクトリに移動してから以下のコマンドを実行します。
 
-## License
+`$ git clone git@github.com:magmag6240/apipj.git`
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+これでLaravelプロジェクトがローカル環境にクローンされます。
+
+## vendorディレクトリを作る(Laravel)
+以下のコマンドを実行してください。
+
+`$ composer install`
+
+`composer.lock`, `composer.json`に書かれた情報を基にパッケージやライブラリがまとめてインストールされ、`vendor`ディレクトリに配置されます。
+
+## データベースの準備（Laravel）
+MySQLにてsnsapipjというデータベースを以下のコマンドで作成してください。
+
+`CREATE DATABASE snsapipj;`
+
+次にテスト用のデータベースを用意します。
+config/database.phpを開き、mysqlの部分をコピーしてmysqlの部分の下にmysql_testを作成します。  
+
+'mysql_test' => [  
+    'driver' => 'mysql',  
+    'url' => env('DATABASE_URL'),  
+    'host' => env('DB_HOST', '127.0.0.1'),  
+    'port' => env('DB_PORT', '3306'),  
+    'database' => 'snsapipj_test',  
+    'username' => 'root',  
+    'password' => '',  
+    'unix_socket' => env('DB_SOCKET', ''),  
+    'charset' => 'utf8mb4',  
+    'collation' => 'utf8mb4_unicode_ci',  
+    'prefix' => '',  
+    'prefix_indexes' => true,  
+    'strict' => true,  
+    'engine' => null,  
+    'options' => extension_loaded('pdo_mysql') ? array_filter([  
+    PDO::MYSQL_ATTR_SSL_CA => env('MYSQL_ATTR_SSL_CA'),  
+    ]) : [],  
+],  
+
+MySQLにて以下のコマンドでsnsapipj_testというデータベースを作成しましょう。
+
+`CREATE DATABASE snsapipj_test;`
+
+次に、テーブル作成のartisanコマンドを実行して、テストDBにテーブルを作成します。
+以下のコマンドを実行してください。
+
+`php artisan migrate:fresh --database=mysql_test`
+
+
+テストDBをテストの実行で使用するには、phpunit.xmlの編集が必要です。
+phpunit.xmlを以下のように編集してください。
+
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:noNamespaceSchemaLocation="./vendor/phpunit/phpunit/phpunit.xsd"
+bootstrap="vendor/autoload.php"
+colors="true"
+>
+  <testsuites>
+    <testsuite name="Unit">
+      <directory suffix="Test.php">./tests/Unit</directory>
+    </testsuite>
+    <testsuite name="Feature">
+      <directory suffix="Test.php">./tests/Feature</directory>
+    </testsuite>
+  </testsuites>
+  <coverage processUncoveredFiles="true">
+    <include>
+      <directory suffix=".php">./app</directory>
+    </include>
+  </coverage>
+  <php>
+    <server name="APP_ENV" value="testing"/>
+    <server name="BCRYPT_ROUNDS" value="4"/>
+    <server name="CACHE_DRIVER" value="array"/>
+    <server name="DB_CONNECTION" value="mysql_test"/>
+    <server name="MAIL_MAILER" value="array"/>
+    <server name="QUEUE_CONNECTION" value="sync"/>
+    <server name="SESSION_DRIVER" value="array"/>
+    <server name="TELESCOPE_ENABLED" value="false"/>
+  </php>
+</phpunit>
+
+## .envファイルを作る
+git cloneしてきたプロジェクトに入っている`.env.example`ファイルを基に以下のコマンド実行で`.env`ファイルを作成します。
+
+`$ cp .env.example .env`
+`$ exit`
+
+作成後、`.env`ファイルの内容を以下のように修正します。
+
+// 前略
+
+DB_CONNECTION=mysql  
+DB_HOST=mysql  
+DB_PORT=3306  
+DB_DATABASE=snsapipj_test  
+DB_USERNAME=root  
+DB_PASSWORD=  
+
+// 後略
+
+## アプリケーションキーを初期化する
+以下のコマンドで初期化を行います。
+
+`$ php artisan key:generate`
+
+## 動作確認
+ブラウザに表示する準備は整いました。
+以下のコマンド実行で、動作確認を行ってください。
+
+`$ php artisan serve`
+
+
+## ユーザー
+
+* 一般会員（使用可能）：3人
+
+
+### 一般会員
+
+| id | name | email | password |
+| ---- | ---- | ---- | ---- |
+| 1 | test1 | test1@example.com | password |
+| 2 | test2 | test2@example.com | password |
+| 3 | test3 | test3@example.com | password |
