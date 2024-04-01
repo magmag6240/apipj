@@ -105,6 +105,7 @@ MySQLにて以下のコマンドでsnsapipj_testというデータベースを�
 テストDBをテストの実行で使用するには、phpunit.xmlの編集が必要です。
 phpunit.xmlを以下のように編集してください。
 
+```
 <?xml version="1.0" encoding="UTF-8"?>  
 <phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 xsi:noNamespaceSchemaLocation="./vendor/phpunit/phpunit/phpunit.xsd"
@@ -135,6 +136,7 @@ colors="true"
     <server name="TELESCOPE_ENABLED" value="false"/>  
   </php>  
 </phpunit>  
+```
 
 ## .envファイルを作る
 git cloneしてきたプロジェクトに入っている`.env.example`ファイルを基に以下のコマンド実行で`.env`ファイルを作成します。
